@@ -30,11 +30,11 @@ _len = int((len(list_mail) - 2) / 2)
 for i in range(_len):
     list_mail.insert(0, 'OR')
 
-""" #print list of folder
-p.pprint(imapObj.list_folders()) """
+#print list of folder
+p.pprint(imapObj.list_folders()) 
 
 #select folder containing all emails
-imapObj.select_folder('INBOX', readonly=False)
+imapObj.select_folder('[Gmail]/All Mail', readonly=False)
 #search for undesirable emails with serch method
 UIDs=imapObj.search(list_mail)
 #print ids presenting each mail
@@ -50,13 +50,17 @@ for i in UIDs:
 
     #print subject
     print(msg.get_subject()) """
+imapObj.set_gmail_labels(UIDs, '\\Trash')
 imapObj.delete_messages(UIDs)
 imapObj.expunge()
+imapObj.close_folder()
  # ─── DELETE MESSAGES FROM FORLDER BIN AND SPAM ──────────────────────────────────
 folders = ["[Gmail]/Spam", "[Gmail]/Bin"]
 for i in folders:
     imapObj.select_folder(i, readonly=False)
     UIDs = imapObj.search(['ALL'])
-    imapObj.delete_messages(UIDs)
+    for UID in UIDs:
+        imapObj.delete_messages([UID])
+        print("mail deleted---->" + str(UID))
     imapObj.expunge()
 imapObj.logout()
