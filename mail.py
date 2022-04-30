@@ -19,7 +19,10 @@ list_mail = ['FROM', 'linkedin', 'FROM', 'flyingblue', \
     'FROM', 'amazon', 'FROM', 'datacamp', 'FROM', 'italki', 'FROM', 'mindmeister',\
     'FROM', 'microverse', 'FROM', 'armeedusalut', 'FROM', 'labanquepostale', \
     'FROM', 'hackerrankmail', 'FROM', 'porvenir', 'FROM', 'discord',\
-    'FROM', 'monavislerendgratuit']
+    'FROM', 'monavislerendgratuit' ,'FROM', 'indeed', 'FROM', 'alltrails', \
+    'FROM', 'microsoft', 'FROM', 'no-reply@42.fr', 'FROM', 'lyftmail', \
+    'FROM', 'heyme', 'FROM', 'revolut', 'FROM', 'boletines@claro.com.co', \
+    'FROM', 'alibaba']
 
 # length of OR we want to add to our arguments
 _len = int((len(list_mail) - 2) / 2)
