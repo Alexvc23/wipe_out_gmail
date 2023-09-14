@@ -30,11 +30,23 @@ This script uses the Gmail API to programmatically manage and clean up your Gmai
 
 ## Setup 🛠
 
-1. **Google Cloud Console Setup**: 
-   - Go to [Google Cloud Console](https://console.cloud.google.com/)
-   - Create a new project.
-   - Enable Gmail API.
-   - Create OAuth 2.0 credentials and download the `credentials.json` file. Place it in the project directory.
+1 **Google API Credentials Setup** 🗝️
+
+To create the credentials in the Google API Console, follow these steps:
+
+1. Go to the [Google API Console](https://console.developers.google.com/).
+2. Select your project from the top-left dropdown menu.
+3. Click on "Library" in the left-hand menu.
+4. Search for "Gmail API" and click on it.
+5. Click the "Enable" button to enable the Gmail API for your project.
+6. Click on "Create credentials" at the top of the page.
+7. In the "Which API are you using?" dropdown, select "Gmail API".
+8. In the "Where will you be calling the API from?" dropdown, select "Other non-UI (e.g., cron job, daemon)".
+9. In the "What data will you be accessing?" section, select "Application data".
+10. Click "What credentials do I need?".
+11. Enter a name for your OAuth 2.0 client ID, and click "Create OAuth 2.0 client ID".
+12. Download the `credentials.json` file by clicking the download button.
+13. Place the `credentials.json` file in your project directory.
 
 2. **Environment Setup**:
    - It's recommended to use a virtual environment:
@@ -66,6 +78,15 @@ python3 script_name.py delete_spam
 ```
 
 Replace script_name.py with the name of your script file.
+
+## Local Server and Redirect URI Explanation 🌐
+
+The `run_local_server()` method is used to authenticate your script with the Gmail API. It sets up a local development server on your machine using the HTTP protocol and port 8080. Port 8080 is a commonly used alternative to the default HTTP port 80, which might be reserved or already in use by other services on your machine.
+
+The local server listens for the authorization response from Google after you grant the script access to your Gmail account. The default redirect URI for the `run_local_server()` method is `http://localhost:8080/`. This URI should be added to the "Authorized redirect URIs" section in your Google API Console to ensure a successful authentication process.
+
+The `run_local_server()` method uses the HTTP protocol instead of HTTPS because it is intended for local development purposes, where the primary goal is to test and debug your application. Setting up HTTPS for local development requires additional steps, such as generating SSL certificates and configuring the server to use them. While it is possible to set up HTTPS for local development, it is not the default behavior for the `run_local_server()` method to simplify the setup process and minimize potential issues during development.
+
 
 ## Contributions 🙌
 
