@@ -10,6 +10,7 @@ Tired of those unread emails or the growing spam messages? This Gmail Cleanup sc
 - [Setup](#Setup-)
 - [Installation](#Installation-)
 - [Usage](#Usage-)
+- [Sources](#Sources-)
 - [Contributions](#Contributions-)
 - [License](#License-)
 
@@ -87,6 +88,17 @@ The local server listens for the authorization response from Google after you gr
 
 The `run_local_server()` method uses the HTTP protocol instead of HTTPS because it is intended for local development purposes, where the primary goal is to test and debug your application. Setting up HTTPS for local development requires additional steps, such as generating SSL certificates and configuring the server to use them. While it is possible to set up HTTPS for local development, it is not the default behavior for the `run_local_server()` method to simplify the setup process and minimize potential issues during development.
 
+## Sources:
+- [Google API Console](https://console.developers.google.com/)
+- [Google API Client Libraries - Python](https://developers.google.com/api-client-library/python/start/get_started)
+- [Google Auth Library - Python](https://google-auth.readthedocs.io/en/latest/reference/google.oauth2.flow.html#google.oauth2.flow.InstalledAppFlow.run_local_server)
+- [Port 8080 - Wikipedia](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports)
+- [OAuth 2.0 for Mobile & Desktop Apps](https://developers.google.com/identity/protocols/oauth2/native-app)
+- [Google OAuth 2.0 Playground](https://developers.google.com/oauthplayground/)
+- [Google API Console - Redirect URIs](https://developers.google.com/identity/protocols/oauth2/web-server#redirect-uri)
+- [Local Development Server - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server)
+- [Local HTTPS - Web.dev](https://web.dev/how-to-use-local-https/)
+- [Local Development with HTTPS - Stack Overflow](https://stackoverflow.com/questions/37702957/localhost-development-with-https)
 
 ## Contributions 🙌
 
