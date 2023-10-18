@@ -78,6 +78,11 @@ To delete emails from the spam folder:
 python3 script_name.py delete_spam
 ```
 
+To exit from the python virtual environment:
+```bash
+deactivate
+```
+
 Replace script_name.py with the name of your script file.
 
 ## Local Server and Redirect URI Explanation 🌐
