@@ -1,0 +1,20 @@
+# Ignore virtual environment folder
+myenv/
+
+# Ignore secret credentials
+credentials.json
+token.pickle
+
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
