@@ -42,7 +42,10 @@ make
 
 # Check if make command was successful
 if [ $? -eq 0 ]; then
-    echo "Build completed successfullyes"
+    echo "Build completed successfully"
+    echo "Will shutdown Docker in 30 seconds..."
+    sleep 30
+    osascript -e 'quit app "Docker Desktop"'
 else
     echo "Build failed"
     exit 1
