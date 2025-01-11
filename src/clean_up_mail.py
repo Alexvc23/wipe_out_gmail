@@ -57,7 +57,7 @@ if __name__ == '__main__':
     actions = {
         'delete_unread': 'is:unread',
         'delete_spam': 'in:spam',
-        'delete_bin': 'in:bin'
+        'delete_bin': 'in:trash'
     }
 
     if len(sys.argv) > 1:
