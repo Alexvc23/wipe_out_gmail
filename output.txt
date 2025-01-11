@@ -1,6 +1,0 @@
- Container wipe_out_gmail-app-1  Created
- Container wipe_out_gmail-app-1  Created
- Container wipe_out_gmail-app-1  Starting
- Container wipe_out_gmail-app-1  Starting
- Container wipe_out_gmail-app-1  Started
- Container wipe_out_gmail-app-1  Started
