@@ -107,6 +107,24 @@ deactivate
    make logs
    ```
 
+## Running the Script with a Desktop Shortcut 🖱️
+
+To run the script using a desktop shortcut, follow these steps:
+
+1. **Create a Shell Script**: Ensure you have the `run_script.sh` file in your project directory.
+2. **Create a .command File**: Create a `.command` file to execute the shell script.
+   ```sh
+   # filepath: /Users/alex/Documents/programing/python/wipe_out_gmail/run_script.command
+   #!/bin/bash
+   /Users/alex/Documents/programing/python/wipe_out_gmail/run_script.sh
+   ```
+   Make the `.command` file executable:
+   ```sh
+   chmod +x /Users/alex/Documents/programing/python/wipe_out_gmail/run_script.command
+   ```
+
+Now, you can double-click the `run_script.command` file to execute the `run_script.sh` script.
+
 ## File Structure 📁
 
 ```
@@ -116,6 +134,8 @@ deactivate
 ├── docker-compose.yml
 ├── Makefile
 ├── requirements.txt
+├── run_script.sh
+├── run_script.command
 ├── src
 │   ├── __init__.py
 │   └── clean_up_mail.py
