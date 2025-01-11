@@ -1,0 +1,22 @@
+# List your dependencies here
+# Requirements for Gmail API Integration
+# Used for handling Gmail operations and authentication
+#
+# Core dependencies:
+# - requests: For making HTTP requests
+# - google-api-python-client: Google API Client Library
+# - oauth2client: OAuth 2.0 client library
+# - google-auth-httplib2: Google Auth Library HTTP transport
+# - google-auth-oauthlib: Google Auth Library OAuthlib integration
+# - httplib2: HTTP client library
+# - urllib3: HTTP library with thread-safe connection pooling
+#
+# Note: Specific versions are pinned for stability
+# Last updated: Based on file content
+requests==2.25.1
+google-api-python-client==2.0.2
+oauth2client==4.1.3
+google-auth-httplib2==0.1.0
+google-auth-oauthlib==0.4.6
+httplib2==0.20.4
+urllib3==1.26.6

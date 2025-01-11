@@ -10,6 +10,8 @@ Tired of those unread emails or the growing spam messages? This Gmail Cleanup sc
 - [Setup](#Setup-)
 - [Installation](#Installation-)
 - [Usage](#Usage-)
+- [Docker Setup](#Docker-Setup-)
+- [File Structure](#File-Structure-)
 - [Sources](#Sources-)
 - [Contributions](#Contributions-)
 - [License](#License-)
@@ -28,10 +30,11 @@ This script uses the Gmail API to programmatically manage and clean up your Gmai
 
 1. **Delete Unread Emails**: Clears all unread emails with a single command.
 2. **Delete Spam**: Instantly clean out all messages in the spam folder.
+3. **Delete Bin**: Empty the bin folder.
 
 ## Setup 🛠
 
-1 **Google API Credentials Setup** 🗝️
+1. **Google API Credentials Setup** 🗝️
 
 To create the credentials in the Google API Console, follow these steps:
 
@@ -51,12 +54,12 @@ To create the credentials in the Google API Console, follow these steps:
 
 2. **Environment Setup**:
    - It's recommended to use a virtual environment:
-     ```
+     ```sh
      python3 -m venv myenv
      source myenv/bin/activate
      ```
    - Install the required packages:
-     ```
+     ```sh
      pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
      ```
 
@@ -68,46 +71,69 @@ To create the credentials in the Google API Console, follow these steps:
 ## Usage 💻
 
 To delete unread emails:
-```bash
-python3 script_name.py delete_unread
+```sh
+python3 src/clean_up_mail.py delete_unread
 ```
 
 To delete emails from the spam folder:
+```sh
+python3 src/clean_up_mail.py delete_spam
+```
 
-```bash
-python3 script_name.py delete_spam
+To delete emails from the bin folder:
+```sh
+python3 src/clean_up_mail.py delete_bin
 ```
 
 To exit from the python virtual environment:
-```bash
+```sh
 deactivate
 ```
 
-Replace script_name.py with the name of your script file.
+## Docker Setup 🐳
 
-## Local Server and Redirect URI Explanation 🌐
+1. Build the Docker image:
+   ```sh
+   docker-compose build
+   ```
 
-The `run_local_server()` method is used to authenticate your script with the Gmail API. It sets up a local development server on your machine using the HTTP protocol and port 8080. Port 8080 is a commonly used alternative to the default HTTP port 80, which might be reserved or already in use by other services on your machine.
+2. Run the Docker container:
+   ```sh
+   docker-compose up
+   ```
 
-The local server listens for the authorization response from Google after you grant the script access to your Gmail account. The default redirect URI for the `run_local_server()` method is `http://localhost:8080/`. This URI should be added to the "Authorized redirect URIs" section in your Google API Console to ensure a successful authentication process.
+3. View logs from the Docker container:
+   ```sh
+   make logs
+   ```
 
-The `run_local_server()` method uses the HTTP protocol instead of HTTPS because it is intended for local development purposes, where the primary goal is to test and debug your application. Setting up HTTPS for local development requires additional steps, such as generating SSL certificates and configuring the server to use them. While it is possible to set up HTTPS for local development, it is not the default behavior for the `run_local_server()` method to simplify the setup process and minimize potential issues during development.
+## File Structure 📁
+
+```
+/Users/alex/Documents/programing/python/wipe_out_gmail
+│
+├── Dockerfile
+├── docker-compose.yml
+├── Makefile
+├── requirements.txt
+├── src
+│   ├── __init__.py
+│   └── clean_up_mail.py
+└── README.md
+```
 
 ## Sources:
 - [Google API Console](https://console.developers.google.com/)
 - [Google API Client Libraries - Python](https://developers.google.com/api-client-library/python/start/get_started)
 - [Google Auth Library - Python](https://google-auth.readthedocs.io/en/latest/reference/google.oauth2.flow.html#google.oauth2.flow.InstalledAppFlow.run_local_server)
-- [Port 8080 - Wikipedia](https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers#Well-known_ports)
 - [OAuth 2.0 for Mobile & Desktop Apps](https://developers.google.com/identity/protocols/oauth2/native-app)
 - [Google OAuth 2.0 Playground](https://developers.google.com/oauthplayground/)
 - [Google API Console - Redirect URIs](https://developers.google.com/identity/protocols/oauth2/web-server#redirect-uri)
-- [Local Development Server - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server)
-- [Local HTTPS - Web.dev](https://web.dev/how-to-use-local-https/)
-- [Local Development with HTTPS - Stack Overflow](https://stackoverflow.com/questions/37702957/localhost-development-with-https)
 
 ## Contributions 🙌
 
 All contributions are welcome! If you have suggestions or improvements, please open an issue or send a pull request.
-License 📜
+
+## License 📜
 
 This project is open-source, available under the [MIT License](https://choosealicense.com/licenses/mit/).
