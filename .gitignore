@@ -18,3 +18,9 @@ __pycache__/
 ehthumbs.db
 Thumbs.db
 
+# Ignore log files
+*.log
+
+# Ignore Docker-related files
+docker-compose.override.yml
+
