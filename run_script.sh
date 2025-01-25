@@ -1,8 +1,30 @@
 #!/bin/bash
 # ==============================================================================
-# Script Name: run_script.sh
-# Description: Build automation script for Gmail wipe out project
 # Author: Alex
+# Script: run_script.sh
+# Description: Automates the Docker-based build process for the Gmail wipe-out application
+#
+# This script performs the following operations:
+# 1. Enables debug mode with set -x
+# 2. Checks if Docker is running and starts it if needed
+# 3. Changes to the project directory
+# 4. Verifies the presence of a Makefile
+# 5. Executes the make command
+# 6. Shuts down Docker after successful build
+#
+# Dependencies:
+#   - Docker Desktop for macOS
+#   - osascript (macOS)
+#   - make
+#
+# Usage: ./run_script.sh
+#
+# Exit codes:
+#   0 - Success
+#   1 - Error (Docker start failure, directory change failure, missing Makefile, or build failure)
+#
+# Author: Alex
+# Path: /Users/alex/Documents/programing/python/wipe_out_gmail/run_script.sh
 # ==============================================================================
 
 set -x
@@ -29,10 +51,10 @@ if ! docker info > /dev/null 2>&1; then
 fi
 
 # Set the working directory
-cd /Users/alex/Documents/programing/python/wipe_out_gmail || { echo "Error: Failed to change directory"; exit 1; }
+cd /Users/alex/Documents/programing/python/wipe_out_gmail/run_script.sh
+ || { echo "Error: Failed to change directory"; exit 1; }
 
-# Check if Makefile exists
-if [ ! -f "Makefile" ]; then
+# Check if Makefile existsefile" ]; then
     echo "Error: Makefile not found in current directory"
     exit 1
 fi
