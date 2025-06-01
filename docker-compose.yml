@@ -1,6 +1,11 @@
 services:
   app:
     build: .
+    stdin_open: true
+    tty: true
     volumes:
       - .:/app
-    command: python src/clean_up_mail.py
+    # Using tail -f /dev/null to keep container running
+    command: sh -c "python src/clean_up_mail.py || true; tail -f /dev/null"
+    # Alternative approach using restart policy
+    restart: on-failure
