@@ -22,8 +22,10 @@ def get_service():
                 print(f"Error refreshing access token: {e}")
                 sys.exit(1)
         else:
+            # Ensure that 'http://localhost:8080/' is listed as an Authorized redirect URI
+            # in your Google Cloud Console project for the OAuth 2.0 client.
             flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
-            creds = flow.run_local_server(port=0, open_browser=False)
+            creds = flow.run_local_server(port=8080, open_browser=False)
             with open('token.pickle', 'wb') as token:
                 pickle.dump(creds, token)
     return build('gmail', 'v1', credentials=creds)
