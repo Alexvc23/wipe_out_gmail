@@ -51,10 +51,10 @@ if ! docker info > /dev/null 2>&1; then
 fi
 
 # Set the working directory
-cd /Users/alex/Documents/programing/python/wipe_out_gmail/run_script.sh
- || { echo "Error: Failed to change directory"; exit 1; }
+cd /Users/alex/brige-projects/programing/python/wipe_out_gmail || { echo "Error: Failed to change directory"; exit 1; }
 
-# Check if Makefile existsefile" ]; then
+# Check if Makefile exists
+if [ ! -f "Makefile" ]; then
     echo "Error: Makefile not found in current directory"
     exit 1
 fi
