@@ -1,6 +1,8 @@
 services:
   app:
     build: .
+    stdin_open: true
+    tty: true
     volumes:
       - .:/app
     # Using tail -f /dev/null to keep container running
