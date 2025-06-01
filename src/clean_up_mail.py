@@ -1,3 +1,4 @@
+print("Script starting...", flush=True)
 import pickle
 import os.path
 import sys
@@ -22,7 +23,7 @@ def get_service():
                 sys.exit(1)
         else:
             flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
-            creds = flow.run_local_server(port=0)
+            creds = flow.run_local_server(port=0, open_browser=False)
             with open('token.pickle', 'wb') as token:
                 pickle.dump(creds, token)
     return build('gmail', 'v1', credentials=creds)
