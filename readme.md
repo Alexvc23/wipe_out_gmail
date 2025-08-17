@@ -2,19 +2,20 @@
 
 Tired of those unread emails or the growing spam messages? This Gmail Cleanup script is here to help you declutter your inbox in a flash! With simple commands, keep your Gmail neat and organized.
 
-## Table of Contents 📖
+## Table of Contents (fixed)
 
-- [Introduction](#Introduction-)
-- [Prerequisites](#Prerequisites-)
-- [Features](#Features-)
-- [Setup](#Setup-)
-- [Installation](#Installation-)
-- [Usage](#Usage-)
-- [Docker Setup](#Docker-Setup-)
-- [File Structure](#File-Structure-)
-- [Sources](#Sources-)
-- [Contributions](#Contributions-)
-- [License](#License-)
+- [Introduction](#introduction)
+- [Prerequisites](#prerequisites)
+- [Features](#features)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Docker Setup](#docker-setup)
+   - [Using the Makefile](#using-the-makefile)
+- [Running the Script with a Desktop Shortcut](#running-the-script-with-a-desktop-shortcut)
+- [File Structure](#file-structure)
+- [Sources](#sources)
+- [Contributions](#contributions)
+- [License](#license)
 
 ## Introduction 📄
 
@@ -106,6 +107,47 @@ deactivate
    ```sh
    make logs
    ```
+
+### Using the Makefile
+
+This project includes a `Makefile` to simplify common Docker Compose workflows. The `Makefile` uses a project-specific `docker compose` invocation and a small helper that ensures the Docker daemon is running before performing actions.
+
+Key points:
+
+- The Makefile defines these variables and targets:
+   - `PROJECT_NAME` – set to `wipe_out_gmail` (used as the Compose project name).
+   - `COMPOSE_CMD` – a shortcut for `docker compose -p $(PROJECT_NAME)` so all Compose commands use the `-p wipe_out_gmail` project flag.
+
+- The Makefile provides these user-facing targets (all appear in `make help`):
+   - `make up`    — Start services in detached mode and follow logs.
+   - `make down`  — Stop and remove services.
+   - `make build` — Build or rebuild services.
+   - `make logs`  — Stream container logs (`-f`).
+   - `make restart` — Restart services (runs `down` then `up`).
+   - `make re`    — Rebuild and restart (runs `build` then `restart`).
+
+- Docker pre-check: the `ensure-docker` target verifies the Docker daemon is running before running Docker Compose commands. On macOS it will attempt to start Docker Desktop using `open -a Docker` and then wait until `docker info` succeeds.
+
+   Notes and alternatives:
+   - The `open -a Docker` command is macOS-specific. If you're on Linux, you may instead use `sudo systemctl start docker` or ensure your Docker service is running via your distro's service manager.
+   - On Windows (or WSL), make sure Docker Desktop is running and that the `docker` CLI is available in your environment.
+
+Examples:
+
+Stream logs (follows them):
+```sh
+make logs
+```
+
+Start services (detached) and follow logs:
+```sh
+make up
+```
+
+Build images then restart:
+```sh
+make re
+```
 
 ## Running the Script with a Desktop Shortcut 🖱️
 

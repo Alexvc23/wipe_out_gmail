@@ -60,7 +60,7 @@ if [ ! -f "Makefile" ]; then
 fi
 
 # Run make
-make
+make up
 
 # Check if make command was successful
 if [ $? -eq 0 ]; then
