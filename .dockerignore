@@ -1,0 +1,54 @@
+# Git and version control
+.git
+.gitignore
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+readme.md
+*.md
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Scripts and makefiles
+Makefile
+run_script.sh
+run_script.command
+
+# Sensitive files (comment out if you want to copy them)
+# token.pickle
+# credentials.json
+
+# Logs
+*.log
+
+# Test files
+test/
+tests/
+*_test.py
+test_*.py

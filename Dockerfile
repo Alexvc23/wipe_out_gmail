@@ -13,5 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY src/ ./src/
 
+# Copy credentials.json if it exists (for production, mount as volume instead)
+COPY credentials.json ./credentials.json
+
 # Command to run the script
 CMD ["python", "src/clean_up_mail.py"]
