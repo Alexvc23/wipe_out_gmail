@@ -8,7 +8,7 @@ PROJECT_NAME = wipe_out_gmail
 COMPOSE_CMD = docker compose -p $(PROJECT_NAME)
 
 # Declare all targets as phony (not file-based)
-.PHONY: help ensure-docker up down build logs restart re
+.PHONY: help ensure-docker up down build logs restart re auth clean-unread clean-spam clean-bin clean-all
 
 # Default target - show help
 help: ## Show this help (default target)
@@ -57,3 +57,19 @@ restart: down up ## Restart services (down + up)
 
 # Rebuild and restart services
 re: build restart ## Rebuild and restart services (build + restart)
+
+# Gmail cleanup commands (interactive for first-time authentication)
+auth: ensure-docker ## Interactive authentication setup (run this first)
+	$(COMPOSE_CMD) run --rm -it app python src/clean_up_mail.py delete_unread
+
+clean-unread: ensure-docker ## Delete all unread emails interactively
+	$(COMPOSE_CMD) run --rm -it app python src/clean_up_mail.py delete_unread
+
+clean-spam: ensure-docker ## Delete all spam emails interactively
+	$(COMPOSE_CMD) run --rm -it app python src/clean_up_mail.py delete_spam
+
+clean-bin: ensure-docker ## Delete all trash/bin emails interactively
+	$(COMPOSE_CMD) run --rm -it app python src/clean_up_mail.py delete_bin
+
+clean-all: ensure-docker ## Delete all emails (unread + spam + trash) interactively
+	$(COMPOSE_CMD) run --rm -it app python src/clean_up_mail.py
