@@ -93,48 +93,58 @@ deactivate
 
 ## Docker Setup 🐳
 
-1. Build the Docker image:
-   ```sh
-   docker-compose build
-   ```
-
-2. Run the Docker container:
-   ```sh
-   docker-compose up
-   ```
-
-3. View logs from the Docker container:
-   ```sh
-   make logs
-   ```
 
 ### Using the Makefile
 
-This project includes a `Makefile` to simplify common Docker Compose workflows. The `Makefile` uses a project-specific `docker compose` invocation and a small helper that ensures the Docker daemon is running before performing actions.
+The included `Makefile` provides easy commands for all major operations, including interactive authentication and targeted Gmail cleanup. All commands ensure Docker is running before execution.
 
-Key points:
+**Key Makefile Commands:**
 
-- The Makefile defines these variables and targets:
-   - `PROJECT_NAME` – set to `wipe_out_gmail` (used as the Compose project name).
-   - `COMPOSE_CMD` – a shortcut for `docker compose -p $(PROJECT_NAME)` so all Compose commands use the `-p wipe_out_gmail` project flag.
+- `make auth`         — Interactive authentication setup (run this first to generate your token)
+- `make clean-unread` — Delete all unread emails interactively
+- `make clean-spam`   — Delete all spam emails interactively
+- `make clean-bin`    — Delete all trash/bin emails interactively
+- `make clean-all`    — Delete all emails (unread + spam + trash) interactively
+- `make up`           — Start services in detached mode and follow logs
+- `make down`         — Stop and remove services
+- `make build`        — Build or rebuild services
+- `make logs`         — View real-time logs from containers
+- `make restart`      — Restart services (down + up)
+- `make re`           — Rebuild and restart services (build + restart)
 
-- The Makefile provides these user-facing targets (all appear in `make help`):
-   - `make up`    — Start services in detached mode and follow logs.
-   - `make down`  — Stop and remove services.
-   - `make build` — Build or rebuild services.
-   - `make logs`  — Stream container logs (`-f`).
-   - `make restart` — Restart services (runs `down` then `up`).
-   - `make re`    — Rebuild and restart (runs `build` then `restart`).
+**Authentication Flow:**
 
-- Docker pre-check: the `ensure-docker` target verifies the Docker daemon is running before running Docker Compose commands. On macOS it will attempt to start Docker Desktop using `open -a Docker` and then wait until `docker info` succeeds.
+On first run, use:
+```sh
+make auth
+```
+This will prompt you to authenticate with Google. If running in Docker, you'll be given a URL to open in your browser. After granting access, copy the code from the browser's address bar and paste it into the terminal when prompted. This creates a `token.pickle` file for future runs.
 
-   Notes and alternatives:
-   - The `open -a Docker` command is macOS-specific. If you're on Linux, you may instead use `sudo systemctl start docker` or ensure your Docker service is running via your distro's service manager.
-   - On Windows (or WSL), make sure Docker Desktop is running and that the `docker` CLI is available in your environment.
+**Cleanup Operations:**
 
-Examples:
+Delete unread emails:
+```sh
+make clean-unread
+```
 
-Stream logs (follows them):
+Delete spam emails:
+```sh
+make clean-spam
+```
+
+Delete bin/trash emails:
+```sh
+make clean-bin
+```
+
+Delete all (unread + spam + bin):
+```sh
+make clean-all
+```
+
+**Other Operations:**
+
+Stream logs:
 ```sh
 make logs
 ```
